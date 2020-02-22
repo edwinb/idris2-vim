@@ -86,4 +86,4 @@ highlight def link idrisString String
 highlight def link idrisChar String
 highlight def link idrisBacktick Operator
 
-let b:current_syntax = "idris"
+let b:current_syntax = "idris2"

@@ -1,9 +1,15 @@
 Idris 2 mode for vim
 ====================
 
-This is an [Idris 2][] mode for vim which features syntax highlighting,
-indentation and optional syntax checking via [Syntastic][]. If you need a REPL
-I recommend using [Vimshell][].
+This is an [Idris2][] mode for vim which features interactive editing,
+syntax highlighting, indentation and optional syntax checking via
+[Syntastic][]. If you need a REPL I recommend using [Vimshell][].
+It is mostly cloned from the original [idris-mode][].
+
+Not all of the commands work yet. Note that the keyboard shortcuts have
+been updated since Idris 1 to be consistent with the Atom mode (e.g.
+`<LocalLeader>a` to add definition, rather than `<LocalLeader>d`) although
+the old shortcuts still work.
 
 ![Screenshot](http://raichoo.github.io/images/vim.png)
 
@@ -42,11 +48,9 @@ commands are supported.
 
 `<LocalLeader>t` show type
 
-`<LocalLeader>d` Create an initial clause for a type declaration.
+`<LocalLeader>a` Create an initial clause for a type declaration.
 
 `<LocalLeader>b` Same as \d but for an initial typeclass method impl.
-
-`<LocalLeader>md` Same as \d but for a proof clause
 
 `<LocalLeader>c` case split
 
@@ -64,11 +68,11 @@ commands are supported.
 
 `<LocalLeader>o` obvious proof search
 
-`<LocalLeader>p` proof search
+`<LocalLeader>s` proof search
 
 `<LocalLeader>i` open idris response window
 
-`<LocalLeader>h` show documentation
+`<LocalLeader>d` show documentation
 
 ## Configuration
 
