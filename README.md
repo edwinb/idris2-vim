@@ -121,9 +121,10 @@ Concealing with unicode characters is off by default, but `let g:idris_conceal =
 If you simply must use tab characters, and would prefer that the ftplugin not set expandtab add `let g:idris_allow_tabchar = 1`.
 
 
-[Idris]: http://www.idris-lang.org
+[Idris2]: https://github.com/edwinb/Idris2
 [Syntastic]: https://github.com/scrooloose/syntastic
 [Vimshell]: https://github.com/Shougo/vimshell.vim
 [Pathogen]: https://github.com/tpope/vim-pathogen
+[idris-mode]: https://github.com/idris-hackers/idris-vim
 [Interactive Idris editing with vim]: http://edwinb.wordpress.com/2013/10/28/interactive-idris-editing-with-vim/
 
