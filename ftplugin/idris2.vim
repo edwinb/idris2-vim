@@ -34,7 +34,7 @@ endfunction
 function! s:IdrisCommand(...)
   let idriscmd = shellescape(join(a:000))
 "  echo("idris2 " . expand ('%:t') . " --client " . idriscmd)
-  return system("idris2 " . expand ('%:t') . " --client " . idriscmd)
+  return system("idris2 --find-ipkg " . expand ('%:t') . " --client " . idriscmd)
 endfunction
 
 function! IdrisDocFold(lineNum)
@@ -95,7 +95,7 @@ endfunction
 function! IdrisReload(q)
   w
   let file = expand("%:p")
-  let tc = system("idris2 " . expand ('%:t') . " --client ''")
+  let tc = system("idris2 --find-ipkg " . expand ('%:t') . " --client ''")
   if (! (tc is ""))
     call IWrite(tc)
   else
@@ -318,12 +318,12 @@ menu Idris.Reload <LocalLeader>r
 menu Idris.Show\ Type <LocalLeader>t
 menu Idris.Evaluate <LocalLeader>e
 menu Idris.-SEP0- :
-menu Idris.Add\ Clause <LocalLeader>d
+menu Idris.Add\ Clause <LocalLeader>a
 menu Idris.Generate\ Definition <LocalLeader>g
 menu Idris.Add\ with <LocalLeader>w
 menu Idris.Case\ Split <LocalLeader>c
 menu Idris.Add\ missing\ cases <LocalLeader>m
-menu Idris.Proof\ Search <LocalLeader>o
+menu Idris.Proof\ Search <LocalLeader>s
 menu Idris.Proof\ Search\ with\ hints <LocalLeader>p
 
 au BufHidden idris-response call IdrisHideResponseWin()

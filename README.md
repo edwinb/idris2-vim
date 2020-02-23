@@ -4,7 +4,13 @@ Idris 2 mode for vim
 This is an [Idris2][] mode for vim which features interactive editing,
 syntax highlighting, indentation and optional syntax checking via
 [Syntastic][]. If you need a REPL I recommend using [Vimshell][].
-It is mostly cloned from the original [idris-mode][].
+It is mostly cloned from the original [idris-mode][]. Unlike the Idris 1
+mode, there is no need to have an Idris REPL running - it invokes Idris 2
+directly.
+
+If there is a `.ipkg` file in any of the parent directories, the mode will
+use that as the root of the source tree, and process any options declared
+in it (for example, to load packages).
 
 Not all of the commands work yet. Note that the keyboard shortcuts have
 been updated since Idris 1 to be consistent with the Atom mode (e.g.
@@ -49,8 +55,6 @@ commands are supported.
 `<LocalLeader>t` show type
 
 `<LocalLeader>a` Create an initial clause for a type declaration.
-
-`<LocalLeader>b` Same as \d but for an initial typeclass method impl.
 
 `<LocalLeader>c` case split
 
