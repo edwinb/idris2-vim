@@ -25,7 +25,7 @@ I recommend using [Pathogen][] for installation. Simply clone
 this repo into your `~/.vim/bundle` directory and you are ready to go.
 
     cd ~/.vim/bundle
-    git clone https://github.com/idris-hackers/idris-vim.git
+    git clone https://github.com/edwinb/idris2-vim.git
 
 ### Manual Installation
 
@@ -47,7 +47,7 @@ how to use it, read this blog article by Edwin Brady on [Interactive Idris editi
 
 ## Interactive Editing Commands
 
-[Idris][] mode for vim offers interactive editing capabilities, the following
+[Idris2][] mode for vim offers interactive editing capabilities, the following
 commands are supported.
 
 `<LocalLeader>r` reload file
