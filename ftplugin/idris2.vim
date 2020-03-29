@@ -33,8 +33,8 @@ endfunction
 
 function! s:IdrisCommand(...)
   let idriscmd = shellescape(join(a:000))
-"  echo("idris2 " . expand ('%:t') . " --client " . idriscmd)
-  return system("idris2 --find-ipkg " . expand ('%:t') . " --client " . idriscmd)
+"  echo("idris2 " . expand ('%:p') . " --client " . idriscmd)
+  return system("idris2 --find-ipkg " . expand ('%:p') . " --client " . idriscmd)
 endfunction
 
 function! IdrisDocFold(lineNum)
@@ -94,8 +94,7 @@ endfunction
 
 function! IdrisReload(q)
   w
-  let file = expand("%:p")
-  let tc = system("idris2 --find-ipkg " . expand ('%:t') . " --client ''")
+  let tc = system("idris2 --find-ipkg " . expand ('%:p') . " --client ''")
   if (! (tc is ""))
     call IWrite(tc)
   else
