@@ -94,7 +94,8 @@ endfunction
 
 function! IdrisReload(q)
   w
-  let tc = system("idris2 --find-ipkg " . expand ('%:p') . " --client ''")
+  let file = expand ('%:p')
+  let tc = system("idris2 --find-ipkg " . file . " --client ''")
   if (! (tc is ""))
     call IWrite(tc)
   else
