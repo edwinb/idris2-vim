@@ -1,7 +1,7 @@
-" syntax highlighting for idris (idris-lang.org)
+" syntax highlighting for Idris 2 (idris-lang.org)
 "
 " Heavily modified version of the haskell syntax
-" highlighter to support idris.
+" highlighter to support Idris 2.
 "
 " author: raichoo (raichoo@googlemail.com)
 
