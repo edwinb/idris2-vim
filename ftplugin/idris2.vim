@@ -99,7 +99,7 @@ function! IdrisReload(q)
     call IWrite(tc)
   else
     if (a:q==0)
-       call IWrite("Successfully reloaded " . file)
+       call IWrite("Successfully reloaded " . expand('%:t'))
     endif
   endif
   return tc
