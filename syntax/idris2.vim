@@ -38,7 +38,7 @@ syn keyword idrisTodo TODO FIXME XXX HACK contained
 syn match idrisLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$" contains=idrisTodo,@Spell
 syn match idrisDocComment "|||\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$" contains=idrisTodo,@Spell
 syn match idrisMetaVar "?[a-z][A-Za-z0-9_']*"
-syn match idrisPragma "%\(hide\|logging\|auto_lazy\|unbound_implicits\|undotted_record_projections\|amibguity_depth\|pair\|rewrite\|integerLit\|stringLit\|charLit\|name\|start\|allow_overloads\|language\|default\|transform\|hint\|global_hint\|defaulthint\|inline\|extern\|macro\|spec\|foreign\|runElab\)"
+syn match idrisPragma "%\(hide\|logging\|auto_lazy\|unbound_implicits\|undotted_record_projections\|amibguity_depth\|pair\|rewrite\|integerLit\|stringLit\|charLit\|name\|start\|allow_overloads\|language\|default\|transform\|hint\|global_hint\|defaulthint\|inline\|extern\|macro\|spec\|foreign\|runElab\|tcinline\)"
 syn match idrisChar "'[^'\\]'\|'\\.'\|'\\u[0-9a-fA-F]\{4}'"
 syn match idrisBacktick "`[A-Za-z][A-Za-z0-9_']*`"
 syn region idrisString start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=@Spell
