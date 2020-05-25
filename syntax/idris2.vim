@@ -16,20 +16,18 @@ syn region idrisBrackets matchgroup=idrisDelimiter start="\[" end="]" contains=T
 syn region idrisBlock matchgroup=idrisDelimiter start="{" end="}" contains=TOP,idrisTypeDecl
 syn keyword idrisModule module namespace
 syn keyword idrisImport import
-syn keyword idrisRefl refl
-syn keyword idrisDeprecated class instance
-syn keyword idrisStructure codata data record dsl interface implementation
+syn keyword idrisStructure data record interface implementation
 syn keyword idrisWhere where
 syn keyword idrisVisibility public abstract private export
-syn keyword idrisBlock parameters mutual postulate using
+syn keyword idrisBlock parameters mutual using
 syn keyword idrisTotality total partial covering
-syn keyword idrisImplicit implicit
-syn keyword idrisAnnotation auto impossible static constructor
-syn keyword idrisStatement do case of rewrite with proof
+syn keyword idrisAnnotation auto impossible default constructor
+syn keyword idrisStatement do case of rewrite with
 syn keyword idrisLet let in
+syn keyword idrisForall forall
+syn keyword idrisDataOpt noHints uniqueSearch search external noNewtype containedin=idrisBrackets
 syn match idrisSyntax "\(pattern \+\|term \+\)\?syntax"
 syn keyword idrisConditional if then else
-syn match idrisTactic contained "\<\(intros\?\|rewrite\|exact\|refine\|trivial\|let\|focus\|try\|compute\|solve\|attack\|reflect\|fill\|applyTactic\)\>"
 syn match idrisNumber "\<[0-9]\+\>\|\<0[xX][0-9a-fA-F]\+\>\|\<0[oO][0-7]\+\>"
 syn match idrisFloat "\<[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\=\>"
 syn match idrisDelimiter  "[,;]"
@@ -40,14 +38,11 @@ syn keyword idrisTodo TODO FIXME XXX HACK contained
 syn match idrisLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$" contains=idrisTodo,@Spell
 syn match idrisDocComment "|||\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$" contains=idrisTodo,@Spell
 syn match idrisMetaVar "?[a-z][A-Za-z0-9_']*"
-syn match idrisLink "%\(lib\|link\|include\)"
-syn match idrisDirective "%\(access\|assert_total\|default\|elim\|error_reverse\|hide\|name\|reflection\|error_handlers\|language\|flag\|dynamic\|provide\|inline\|used\|no_implicit\|hint\|extern\|unqualified\|error_handler\)"
-syn keyword idrisDSL lambda variable index_first index_next
+syn match idrisPragma "%\(hide\|logging\|auto_lazy\|unbound_implicits\|undotted_record_projections\|amibguity_depth\|pair\|rewrite\|integerLit\|stringLit\|charLit\|name\|start\|allow_overloads\|language\|default\|transform\|hint\|global_hint\|defaulthint\|inline\|extern\|macro\|spec\|foreign\|runElab\|tcinline\)"
 syn match idrisChar "'[^'\\]'\|'\\.'\|'\\u[0-9a-fA-F]\{4}'"
 syn match idrisBacktick "`[A-Za-z][A-Za-z0-9_']*`"
 syn region idrisString start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=@Spell
 syn region idrisBlockComment start="{-" end="-}" contains=idrisBlockComment,idrisTodo,@Spell
-syn region idrisProofBlock start="\(default\s\+\)\?\(proof\|tactics\) *{" end="}" contains=idrisTactic
 syn match idrisIdentifier "[a-zA-Z][a-zA-z0-9_']*" contained
 
 highlight def link idrisDeprecated Error
@@ -56,21 +51,18 @@ highlight def link idrisImport Structure
 highlight def link idrisModule Structure
 highlight def link idrisStructure Structure
 highlight def link idrisStatement Statement
+highlight def link idrisForall Structure
+highlight def link idrisDataOpt Statement
 highlight def link idrisDSL Statement
 highlight def link idrisBlock Statement
 highlight def link idrisAnnotation Statement
 highlight def link idrisWhere Structure
 highlight def link idrisLet Structure
 highlight def link idrisTotality Statement
-highlight def link idrisImplicit Statement
 highlight def link idrisSyntax Statement
 highlight def link idrisVisibility Statement
 highlight def link idrisConditional Conditional
-highlight def link idrisProofBlock Macro
-highlight def link idrisRefl Macro
-highlight def link idrisTactic Identifier
-highlight def link idrisLink Statement
-highlight def link idrisDirective Statement
+highlight def link idrisPragma Statement
 highlight def link idrisNumber Number
 highlight def link idrisFloat Float
 highlight def link idrisDelimiter Delimiter
