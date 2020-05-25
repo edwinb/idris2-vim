@@ -1,5 +1,5 @@
 "============================================================================
-"File:        idris.vim
+"File:        idris2.vim
 "Description: Syntax checking plugin for syntastic.vim
 "Maintainer:  raichoo <raichoo at googlemail dot com>
 "License:     This program is free software. It comes without any warranty,
@@ -16,7 +16,7 @@ endif
 let g:loaded_syntastic_idris_idris_checker=1
 
 function! SyntaxCheckers_idris_idris_IsAvailable()
-    return executable("idris")
+    return executable("idris2")
 endfunction
 
 if !exists("g:syntastic_idris_options")
@@ -25,11 +25,11 @@ endif
 
 function! SyntaxCheckers_idris_idris_GetLocList() dict
     let makeprg = self.makeprgBuild({
-        \ 'exe': 'idris',
-        \ 'args': "--client ':l". g:syntastic_idris_options,
+        \ 'exe': 'idris2',
+        \ 'args': "--find-ipkg --client ':l". g:syntastic_idris_options,
         \ 'post_args': "'",
-        \ 'filetype': 'idris',
-        \ 'subchecker': 'idris' })
+        \ 'filetype': 'idris2',
+        \ 'subchecker': 'idris2' })
 
     let errorformat =
         \ '"%f" (line %l\, column %c\):,' .
@@ -50,5 +50,5 @@ function! SyntaxCheckers_idris_idris_GetLocList() dict
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
-    \ 'filetype': 'idris',
-    \ 'name': 'idris'})
+    \ 'filetype': 'idris2',
+    \ 'name': 'idris2'})
