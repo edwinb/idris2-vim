@@ -54,7 +54,7 @@ commands are supported.
 
 `<LocalLeader>t` show type
 
-`<LocalLeader>a` Create an initial clause for a type declaration.
+`<LocalLeader>b` Create an initial clause for a type declaration.
 
 `<LocalLeader>c` case split
 
