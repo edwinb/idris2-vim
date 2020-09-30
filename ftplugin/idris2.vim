@@ -60,6 +60,7 @@ function! IdrisResponseWin()
     badd idris-response
     b idris-response
     let g:idris_respwin = "active"
+    setlocal filetype=unix
     set buftype=nofile
     wincmd k
   elseif (bufexists("idris-response") && g:idris_respwin == "hidden")
@@ -78,17 +79,22 @@ function! IdrisShowResponseWin()
   let g:idris_respwin = "active"
 endfunction
 
+function! RemoveColor(str)
+  return substitute(a:str, "\[[0-9;]*m", "", "g")
+endfunction
+
 function! IWrite(str)
+  let l:str = RemoveColor(a:str)
   if (bufexists("idris-response"))
     let save_cursor = getcurpos()
     b idris-response
     %delete
-    let resp = split(a:str, '\n')
+    let resp = split(l:str, '\n')
     call append(1, resp)
     b #
     call setpos('.', save_cursor)
   else
-    echo a:str
+    echo l:str 
   endif
 endfunction
 
