@@ -84,7 +84,10 @@ function! RemoveColor(str)
 endfunction
 
 function! IWrite(str)
-  let l:str = RemoveColor(a:str)
+  let l:str = a:str
+  if exists("g:idris_disable_ansi_colors") && g:idris_disable_ansi_colors == 1
+    let l:str = RemoveColor(a:str)
+  endif
   if (bufexists("idris-response"))
     let save_cursor = getcurpos()
     b idris-response
