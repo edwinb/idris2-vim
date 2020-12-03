@@ -35,7 +35,7 @@ function! s:IdrisCommand(...)
   let idriscmd = shellescape(join(a:000))
   " Vim does not support ANSI escape codes natively, so we need to disable
   " automatic colouring
-  return system("idris2 --no-color --find-ipkg " . shellescape(expand('%:p')) . " --client " . idriscmd)
+  return system("idris2 " . shellescape(expand('%:p')) . " --client --no-color --find-ipkg" . idriscmd)
 endfunction
 
 function! IdrisDocFold(lineNum)
