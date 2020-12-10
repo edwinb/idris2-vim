@@ -9,7 +9,7 @@ if exists("b:current_syntax")
   finish
 endif
 
-syn match idrisTypeDecl "[a-zA-Z][a-zA-z0-9_']*\s\+:\s\+"
+syn match idrisTypeDecl "[a-zA-Z][a-zA-Z0-9_']*\s\+:\s\+"
   \ contains=idrisIdentifier,idrisOperators
 syn region idrisParens matchgroup=idrisDelimiter start="(" end=")" contains=TOP,idrisTypeDecl
 syn region idrisBrackets matchgroup=idrisDelimiter start="\[" end="]" contains=TOP,idrisTypeDecl
@@ -42,7 +42,7 @@ syn match idrisChar "'[^'\\]'\|'\\.'\|'\\u[0-9a-fA-F]\{4}'"
 syn match idrisBacktick "`[A-Za-z][A-Za-z0-9_']*`"
 syn region idrisString start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=@Spell
 syn region idrisBlockComment start="{-" end="-}" contains=idrisBlockComment,idrisTodo,@Spell
-syn match idrisIdentifier "[a-zA-Z][a-zA-z0-9_']*" contained
+syn match idrisIdentifier "[a-zA-Z][a-zA-Z0-9_']*" contained
 
 highlight def link idrisDeprecated Error
 highlight def link idrisIdentifier Identifier
