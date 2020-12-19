@@ -54,7 +54,7 @@ function! idris2#onHideResponseWin()
   let g:idris_respwin = "hidden"
 endfunction
 
-function! IWrite(str)
+function! idris2#write(str)
   let bufname = "idris-response"
   if (bufexists(bufname))
     let nr = bufwinnr(bufname)
@@ -94,10 +94,10 @@ function! idris2#reload(q)
   let file = expand('%:p')
   let tc = system("idris2 --no-color --find-ipkg " . shellescape(file) . " --client ''")
   if (! (tc is ""))
-    call IWrite(tc)
+    call idris2#write(tc)
   else
     if (a:q==0)
-       call IWrite("Successfully reloaded " . file)
+       call idris2#write("Successfully reloaded " . file)
     endif
   endif
   return tc
@@ -109,7 +109,7 @@ function! idris2#reloadToLine(cline)
   "let file = expand("%:p")
   "let tc = s:idrisCommand(":lto", a:cline, file)
   "if (! (tc is ""))
-  "  call IWrite(tc)
+  "  call idris2#write(tc)
   "endif
   "return tc
 endfunction
@@ -120,14 +120,14 @@ function! idris2#showType()
   let cline = line(".")
   let ccol = col(".")
     let ty = s:idrisCommand(":t", word)
-    call IWrite(ty)
+    call idris2#write(ty)
 endfunction
 
 function! idris2#showDoc()
   write
   let word = expand("<cword>")
   let ty = s:idrisCommand(":doc", word)
-  call IWrite(ty)
+  call idris2#write(ty)
 endfunction
 
 function! idris2#proofSearch(hint)
@@ -144,7 +144,7 @@ function! idris2#proofSearch(hint)
 
   let result = s:idrisCommand(":ps!", cline, word, hints)
   if (! (result is ""))
-     call IWrite(result)
+     call idris2#write(result)
   else
     e
     call winrestview(view)
@@ -159,7 +159,7 @@ function! idris2#generateDef()
 
   let result = s:idrisCommand(":gd!", cline, word)
   if (! (result is ""))
-     call IWrite(result)
+     call idris2#write(result)
   else
     e
     call winrestview(view)
@@ -174,7 +174,7 @@ function! idris2#makeLemma()
 
   let result = s:idrisCommand(":ml!", cline, word)
   if (! (result is ""))
-     call IWrite(result)
+     call idris2#write(result)
   else
     e
     call winrestview(view)
@@ -191,7 +191,7 @@ function! idris2#refine()
 
   let result = s:idrisCommand(":ref!", cline, word, name)
   if (! (result is ""))
-     call IWrite(result)
+     call idris2#write(result)
   else
     e
     call winrestview(view)
@@ -206,7 +206,7 @@ function! idris2#addMissing()
 
   let result = s:idrisCommand(":am!", cline, word)
   if (! (result is ""))
-     call IWrite(result)
+     call idris2#write(result)
   else
     e
     call winrestview(view)
@@ -221,7 +221,7 @@ function! idris2#caseSplit()
   let word = expand("<cword>")
   let result = s:idrisCommand(":cs!", cline, ccol, word)
   if (! (result is ""))
-     call IWrite(result)
+     call idris2#write(result)
   else
      e
      call winrestview(view)
@@ -237,7 +237,7 @@ function! idris2#makeWith()
 
   let result = s:idrisCommand(":mw!", cline, word)
   if (! (result is ""))
-     call IWrite(result)
+     call idris2#write(result)
   else
     e
     call winrestview(view)
@@ -253,7 +253,7 @@ function! idris2#makeCase()
 
   let result = s:idrisCommand(":mc!", cline, word)
   if (! (result is ""))
-     call IWrite(result)
+     call idris2#write(result)
   else
     e
     call winrestview(view)
@@ -275,7 +275,7 @@ function! idris2#addClause(proof)
 
   let result = s:idrisCommand(fn, cline, word)
   if (! (result is ""))
-     call IWrite(result)
+     call idris2#write(result)
   else
     e
     call winrestview(view)
@@ -288,6 +288,6 @@ function! idris2#eval()
   write
   let expr = input ("Expression: ")
   let result = s:idrisCommand(expr)
-  call IWrite(" = " . result)
+  call idris2#write(" = " . result)
 endfunction
 
