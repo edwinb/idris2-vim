@@ -81,13 +81,23 @@ endfunction
 
 function! IWrite(str)
   if (bufexists("idris-response"))
-    let save_cursor = getcurpos()
+    " Save the cursor and scroll position (as well as some other details)
+    let save_view = winsaveview()
+
+    " Save the user's 'hidden' option so that we can temporarily set it on in
+    " order to preserve the undo history when switching buffers
+    let save_hidden = &hidden
+
+    set hidden
     b idris-response
     %delete
     let resp = split(a:str, '\n')
     call append(1, resp)
     b #
-    call setpos('.', save_cursor)
+
+    " Restore the saved values
+    let &hidden = save_hidden
+    call winrestview(save_view)
   else
     echo a:str
   endif
