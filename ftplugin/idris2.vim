@@ -268,6 +268,19 @@ function! IdrisAddClause(proof)
   endif
 endfunction
 
+function! IdrisTypeAt()
+  let cline = line(".")
+  let ccol = col(".")
+
+  let name = s:currentQueryObject()
+
+  let result = s:IdrisCommand(":typeat", cline, ccol, name)
+
+  if (! (result is ""))
+     call IWrite(result)
+  endif
+endfunction
+
 function! IdrisEval()
   let expr = input ("Expression: ")
   let result = s:IdrisCommand(expr)
@@ -293,6 +306,7 @@ nnoremap <buffer> <silent> <LocalLeader>w 0:call IdrisMakeWith()<ENTER>
 nnoremap <buffer> <silent> <LocalLeader>mc :call IdrisMakeCase()<ENTER>
 nnoremap <buffer> <silent> <LocalLeader>i 0:call IdrisResponseWin()<ENTER>
 nnoremap <buffer> <silent> <LocalLeader>h :call IdrisShowDoc()<ENTER>
+nnoremap <buffer> <silent> <LocalLeader>y :call IdrisTypeAt()<ENTER>
 
 menu Idris.Reload <LocalLeader>r
 menu Idris.Show\ Type <LocalLeader>t
