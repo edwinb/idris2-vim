@@ -33,9 +33,18 @@ endfunction
 
 function! s:IdrisCommand(...)
   let idriscmd = shellescape(join(a:000))
+
+  " write the file so that Idris2 can interact with it
+  w
+
   " Vim does not support ANSI escape codes natively, so we need to disable
   " automatic colouring
-  return system("idris2 --no-color --find-ipkg " . shellescape(expand('%:p')) . " --client " . idriscmd)
+  let commandResult =  system("idris2 --no-color --find-ipkg " . shellescape(expand('%:p')) . " --client " . idriscmd)
+
+  " update the file (Idris2 may have modified it)
+  e
+
+  return commandResult
 endfunction
 
 function! IdrisDocFold(lineNum)
@@ -104,9 +113,10 @@ function! IWrite(str)
 endfunction
 
 function! IdrisReload(q)
-  w
   let file = expand('%:p')
-  let tc = system("idris2 --no-color --find-ipkg " . shellescape(file) . " --client ''")
+
+  let tc = s:IdrisCommand('')
+
   if (! (tc is ""))
     call IWrite(tc)
   else
@@ -129,7 +139,6 @@ function! IdrisReloadToLine(cline)
 endfunction
 
 function! IdrisShowType()
-  w
   let word = s:currentQueryObject()
   let cline = line(".")
   let ccol = col(".")
@@ -138,15 +147,12 @@ function! IdrisShowType()
 endfunction
 
 function! IdrisShowDoc()
-  w
   let word = expand("<cword>")
   let ty = s:IdrisCommand(":doc", word)
   call IWrite(ty)
 endfunction
 
 function! IdrisProofSearch(hint)
-  let view = winsaveview()
-  w
   let cline = line(".")
   let word = s:currentQueryObject()
 
@@ -159,30 +165,20 @@ function! IdrisProofSearch(hint)
   let result = s:IdrisCommand(":ps!", cline, word, hints)
   if (! (result is ""))
      call IWrite(result)
-  else
-    e
-    call winrestview(view)
   endif
 endfunction
 
 function! IdrisGenerateDef()
-  let view = winsaveview()
-  w
   let cline = line(".")
   let word = s:currentQueryObject()
 
   let result = s:IdrisCommand(":gd!", cline, word)
   if (! (result is ""))
      call IWrite(result)
-  else
-    e
-    call winrestview(view)
   endif
 endfunction
 
 function! IdrisMakeLemma()
-  let view = winsaveview()
-  w
   let cline = line(".")
   let word = s:currentQueryObject()
 
@@ -190,15 +186,12 @@ function! IdrisMakeLemma()
   if (! (result is ""))
      call IWrite(result)
   else
-    e
-    call winrestview(view)
+    " Search backwards for the word the cursor was on
     call search(word, "b")
   endif
 endfunction
 
 function! IdrisRefine()
-  let view = winsaveview()
-  w
   let cline = line(".")
   let word = expand("<cword>")
   let name = input ("Name: ")
@@ -206,62 +199,46 @@ function! IdrisRefine()
   let result = s:IdrisCommand(":ref!", cline, word, name)
   if (! (result is ""))
      call IWrite(result)
-  else
-    e
-    call winrestview(view)
   endif
 endfunction
 
 function! IdrisAddMissing()
-  let view = winsaveview()
-  w
   let cline = line(".")
   let word = expand("<cword>")
 
   let result = s:IdrisCommand(":am!", cline, word)
   if (! (result is ""))
      call IWrite(result)
-  else
-    e
-    call winrestview(view)
   endif
 endfunction
 
 function! IdrisCaseSplit()
-  w
-  let view = winsaveview()
   let cline = line(".")
   let ccol = col(".")
   let word = expand("<cword>")
   let result = s:IdrisCommand(":cs!", cline, ccol, word)
   if (! (result is ""))
      call IWrite(result)
-  else
-     e
-     call winrestview(view)
   endif
 endfunction
 
 function! IdrisMakeWith()
-  let view = winsaveview()
-  w
   let cline = line(".")
   let word = s:currentQueryObject()
-  let tc = IdrisReload(1)
+
+  " Why is reload needed here?
+  " let tc = IdrisReload(1)
 
   let result = s:IdrisCommand(":mw!", cline, word)
   if (! (result is ""))
      call IWrite(result)
   else
-    e
-    call winrestview(view)
+    " Got to the underscore the command creates
     call search("_")
   endif
 endfunction
 
 function! IdrisMakeCase()
-  let view = winsaveview()
-  w
   let cline = line(".")
   let word = s:currentQueryObject()
 
@@ -269,15 +246,11 @@ function! IdrisMakeCase()
   if (! (result is ""))
      call IWrite(result)
   else
-    e
-    call winrestview(view)
     call search("_")
   endif
 endfunction
 
 function! IdrisAddClause(proof)
-  let view = winsaveview()
-  w
   let cline = line(".")
   let word = expand("<cword>")
 
@@ -291,15 +264,11 @@ function! IdrisAddClause(proof)
   if (! (result is ""))
      call IWrite(result)
   else
-    e
-    call winrestview(view)
     call search(word)
-
   endif
 endfunction
 
 function! IdrisEval()
-  w
   let expr = input ("Expression: ")
   let result = s:IdrisCommand(expr)
   call IWrite(" = " . result)
