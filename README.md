@@ -56,6 +56,8 @@ commands are supported.
 
 `<LocalLeader>a` Create an initial clause for a type declaration.
 
+`<LocalLeader>b` Add skeleton definition for an interface.
+
 `<LocalLeader>c` case split
 
 `<LocalLeader>mc` make case
