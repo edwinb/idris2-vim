@@ -41,8 +41,13 @@ function! s:IdrisCommand(...)
   " automatic colouring
   let commandResult =  system("idris2 --no-color --find-ipkg " . shellescape(expand('%:p')) . " --client " . idriscmd)
 
+  " Keep the window in the same place when reading the file
+  let save_view = winsaveview()
+
   " update the file (Idris2 may have modified it)
   e
+
+  call winrestview(save_view)
 
   return commandResult
 endfunction
