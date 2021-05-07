@@ -88,6 +88,7 @@ function! IWrite(str)
     call append(1, resp)
     b #
     call setpos('.', save_cursor)
+    w
   else
     echo a:str
   endif
