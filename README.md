@@ -48,7 +48,7 @@ how to use it, read this blog article by Edwin Brady on [Interactive Idris editi
 ## Interactive Editing Commands
 
 [Idris2][] mode for vim offers interactive editing capabilities, the following
-commands are supported.
+commands are supported. Note that `<LocalLeader>` is `\` by default.
 
 `<LocalLeader>r` reload file
 
