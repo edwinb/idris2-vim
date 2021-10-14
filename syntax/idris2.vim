@@ -22,7 +22,7 @@ syn keyword idrisVisibility public abstract private export
 syn keyword idrisBlock parameters mutual using
 syn keyword idrisTotality total partial covering
 syn keyword idrisAnnotation auto impossible default constructor
-syn keyword idrisStatement do case of rewrite with
+syn keyword idrisStatement do case of rewrite with proof
 syn keyword idrisLet let in
 syn keyword idrisForall forall
 syn keyword idrisDataOpt noHints uniqueSearch search external noNewtype containedin=idrisBrackets
