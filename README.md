@@ -38,6 +38,23 @@ Be sure that the following lines are in your
     syntax on
     filetype on
     filetype plugin indent on
+    
+
+### Installation on Vim 8 (or later)  
+
+If you are using Vim 8 or the later you don't need a plugin manager, just follow this steps, 
+
+        
+    mkdir ~/.vim/pack/plugins
+    cd ~/.vim/pack/plugins
+    git clone https://github.com/edwinb/idris2-vim.git
+                    
+Add this lines to your
+ `.vimrc` 
+        
+       
+    packloadall
+    let maplocalleader = ","        "Choose whatever symbol for localleader.
 
 ## Features
 
